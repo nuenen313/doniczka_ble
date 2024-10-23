@@ -27,7 +27,7 @@
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
-
+float temperature = 25.0;
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
@@ -55,7 +55,12 @@ static void MX_GPIO_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
+void Update_Temperature(void) 
+    temperature += 0.1;
+    if (temperature >= 30.0) {
+        temperature = 25.0;  //reset temperatury zanim przekroczy 30 stopni
+    }
+}
 /* USER CODE END 0 */
 
 /**
@@ -97,8 +102,9 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-
-  MX_BlueNRG_MS_Process();
+      MX_BlueNRG_MS_Process();
+      Update_Temperature();
+      HAL_Delay(1000);
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */

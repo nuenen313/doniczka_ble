@@ -37,7 +37,7 @@
 #include "stm32l1xx_hal_tim.h"
 
 /* USER CODE BEGIN Includes */
-
+extern float temperature; //extern bo temperatura z innego pliku
 /* USER CODE END Includes */
 
 /* Private defines -----------------------------------------------------------*/
@@ -281,8 +281,10 @@ static void User_Process(void)
       srand(HAL_GetTick());
 
       /* Update emulated Environmental data */
-      Set_Random_Environmental_Values(&data_t, &data_p);
-      BlueMS_Environmental_Update((int32_t)(data_p *100), (int16_t)(data_t * 10));
+      //Set_Random_Environmental_Values(&data_t, &data_p); to wywalamy
+      int32_t pressure = 101325; //cisnienie hard-coded
+      int16_t temp_int = (int16_t)(temperature * 10); //nasza inkrementowana temperatura
+      BlueMS_Environmental_Update(pressure, temp_int); //wyslij do apki
 
       /* Update emulated Acceleration, Gyroscope and Sensor Fusion data */
       Set_Random_Motion_Values(counter);

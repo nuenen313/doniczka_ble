@@ -41,21 +41,27 @@ float temperature = 25.0;
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
+I2C_HandleTypeDef hi2c1;
+
+UART_HandleTypeDef huart1;
 
 /* USER CODE BEGIN PV */
-
+static const uint8_t TMP_ADDR = 0x48 << 1;
+static const uint8_t REG_ADDR = 0x00;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
+static void MX_I2C1_Init(void);
+static void MX_USART1_UART_Init(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-void Update_Temperature(void) 
+void Update_Temperature(void) {
     temperature += 0.1;
     if (temperature >= 30.0) {
         temperature = 25.0;  //reset temperatury zanim przekroczy 30 stopni
@@ -71,7 +77,12 @@ int main(void)
 {
 
   /* USER CODE BEGIN 1 */
-
+	HAL_StatusTypeDef ret;
+	uint8_t buff[50];
+	uint8_t buf[2];
+	char displayBuffer[100];
+	int16_t val;
+	float temp_c;
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -92,6 +103,8 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
+  MX_I2C1_Init();
+  MX_USART1_UART_Init();
   MX_BlueNRG_MS_Init();
   /* USER CODE BEGIN 2 */
 
@@ -102,9 +115,31 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-      MX_BlueNRG_MS_Process();
-      Update_Temperature();
-      HAL_Delay(1000);
+	  buff[0] = REG_ADDR;
+	  	  ret = HAL_I2C_Master_Transmit(&hi2c1, TMP_ADDR, buff, 1, HAL_MAX_DELAY);
+	  	  if (ret != HAL_OK) {
+	  		  strcpy((char*)buff, "Error Tx\r\n");
+	  	  } else {
+	  		  ret = HAL_I2C_Master_Receive(&hi2c1, TMP_ADDR, buff, 2, HAL_MAX_DELAY);
+	  	  }
+	  	  if (ret != HAL_OK) {
+	  	  		  strcpy((char*)buff, "Error Tx\r\n");
+	  	  	  } else {
+	  	  		  val = ((int16_t)buff[0] << 4) | (buff[1] >> 4);
+	  	  	  }
+	  	  if (val > 0x7FF) {
+	  		  val |= 0xF000;
+	  	  }
+	  	  temp_c = (float)val*0.0625f;
+	  	  temp_c *= 100;
+	  	  sprintf((char*)buff, "%u.%02u C \r\n",
+	  			  ((unsigned int)temp_c / 100), ((unsigned int)temp_c % 100));
+	  	  //strcpy((char*)buff, "Hello!\r\n");
+
+	  	  HAL_UART_Transmit(&huart2, buff, strlen((char*)buff), HAL_MAX_DELAY);
+	  	  HAL_Delay(1000);
+	  	  temperature = temp_c/10.0f;
+	  	  MX_BlueNRG_MS_Process();
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
@@ -151,6 +186,73 @@ void SystemClock_Config(void)
   {
     Error_Handler();
   }
+}
+
+/**
+  * @brief I2C1 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_I2C1_Init(void)
+{
+
+  /* USER CODE BEGIN I2C1_Init 0 */
+
+  /* USER CODE END I2C1_Init 0 */
+
+  /* USER CODE BEGIN I2C1_Init 1 */
+
+  /* USER CODE END I2C1_Init 1 */
+  hi2c1.Instance = I2C1;
+  hi2c1.Init.ClockSpeed = 100000;
+  hi2c1.Init.DutyCycle = I2C_DUTYCYCLE_2;
+  hi2c1.Init.OwnAddress1 = 0;
+  hi2c1.Init.AddressingMode = I2C_ADDRESSINGMODE_7BIT;
+  hi2c1.Init.DualAddressMode = I2C_DUALADDRESS_DISABLE;
+  hi2c1.Init.OwnAddress2 = 0;
+  hi2c1.Init.GeneralCallMode = I2C_GENERALCALL_DISABLE;
+  hi2c1.Init.NoStretchMode = I2C_NOSTRETCH_DISABLE;
+  if (HAL_I2C_Init(&hi2c1) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN I2C1_Init 2 */
+
+  /* USER CODE END I2C1_Init 2 */
+
+}
+
+/**
+  * @brief USART1 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_USART1_UART_Init(void)
+{
+
+  /* USER CODE BEGIN USART1_Init 0 */
+
+  /* USER CODE END USART1_Init 0 */
+
+  /* USER CODE BEGIN USART1_Init 1 */
+
+  /* USER CODE END USART1_Init 1 */
+  huart1.Instance = USART1;
+  huart1.Init.BaudRate = 115200;
+  huart1.Init.WordLength = UART_WORDLENGTH_8B;
+  huart1.Init.StopBits = UART_STOPBITS_1;
+  huart1.Init.Parity = UART_PARITY_NONE;
+  huart1.Init.Mode = UART_MODE_TX_RX;
+  huart1.Init.HwFlowCtl = UART_HWCONTROL_NONE;
+  huart1.Init.OverSampling = UART_OVERSAMPLING_16;
+  if (HAL_UART_Init(&huart1) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN USART1_Init 2 */
+
+  /* USER CODE END USART1_Init 2 */
+
 }
 
 /**

@@ -1,17 +1,5 @@
-BlueNRG_MS/App/sensor.o: ../BlueNRG_MS/App/sensor.c \
- ../BlueNRG_MS/App/sensor.h ../BlueNRG_MS/App/gatt_db.h \
- ../Middlewares/ST/BlueNRG-MS/includes/bluenrg_def.h \
- ../Middlewares/ST/BlueNRG-MS/includes/bluenrg_types.h \
- ../Middlewares/ST/BlueNRG-MS/includes/bluenrg_gap.h \
- ../Middlewares/ST/BlueNRG-MS/includes/link_layer.h \
- ../Middlewares/ST/BlueNRG-MS/includes/bluenrg_def.h \
- ../Middlewares/ST/BlueNRG-MS/includes/bluenrg_gap_aci.h \
- ../Middlewares/ST/BlueNRG-MS/includes/hci_le.h \
- ../Middlewares/ST/BlueNRG-MS/includes/link_layer.h \
- ../Middlewares/ST/BlueNRG-MS/includes/hci_const.h \
- ../Middlewares/ST/BlueNRG-MS/hci/hci_tl_patterns/Basic/hci_tl.h \
- ../BlueNRG_MS/Target/hci_tl_interface.h \
- ../Core/Inc/stm32l1xx_nucleo_bus.h ../Core/Inc/stm32l1xx_nucleo_conf.h \
+Drivers/STM32L1xx_HAL_Driver/Src/stm32l1xx_hal_i2c.o: \
+ ../Drivers/STM32L1xx_HAL_Driver/Src/stm32l1xx_hal_i2c.c \
  ../Drivers/STM32L1xx_HAL_Driver/Inc/stm32l1xx_hal.h \
  ../Core/Inc/stm32l1xx_hal_conf.h \
  ../Drivers/STM32L1xx_HAL_Driver/Inc/stm32l1xx_hal_rcc.h \
@@ -38,31 +26,7 @@ BlueNRG_MS/App/sensor.o: ../BlueNRG_MS/App/sensor.c \
  ../Drivers/STM32L1xx_HAL_Driver/Inc/stm32l1xx_hal_pwr_ex.h \
  ../Drivers/STM32L1xx_HAL_Driver/Inc/stm32l1xx_hal_spi.h \
  ../Drivers/STM32L1xx_HAL_Driver/Inc/stm32l1xx_hal_uart.h \
- ../Drivers/STM32L1xx_HAL_Driver/Inc/stm32l1xx_hal_exti.h \
- ../Drivers/BSP/STM32L1xx_Nucleo/stm32l1xx_nucleo_errno.h \
- ../Middlewares/ST/BlueNRG-MS/includes/bluenrg_types.h \
- ../Middlewares/ST/BlueNRG-MS/utils/ble_list.h \
- ../BlueNRG_MS/Target/bluenrg_conf.h \
- ../Middlewares/ST/BlueNRG-MS/includes/bluenrg_aci_const.h \
- ../Middlewares/ST/BlueNRG-MS/includes/hci_const.h \
- ../Middlewares/ST/BlueNRG-MS/includes/bluenrg_gatt_server.h \
- ../Middlewares/ST/BlueNRG-MS/includes/compiler.h \
- ../Middlewares/ST/BlueNRG-MS/includes/bluenrg_gatt_aci.h
-../BlueNRG_MS/App/sensor.h:
-../BlueNRG_MS/App/gatt_db.h:
-../Middlewares/ST/BlueNRG-MS/includes/bluenrg_def.h:
-../Middlewares/ST/BlueNRG-MS/includes/bluenrg_types.h:
-../Middlewares/ST/BlueNRG-MS/includes/bluenrg_gap.h:
-../Middlewares/ST/BlueNRG-MS/includes/link_layer.h:
-../Middlewares/ST/BlueNRG-MS/includes/bluenrg_def.h:
-../Middlewares/ST/BlueNRG-MS/includes/bluenrg_gap_aci.h:
-../Middlewares/ST/BlueNRG-MS/includes/hci_le.h:
-../Middlewares/ST/BlueNRG-MS/includes/link_layer.h:
-../Middlewares/ST/BlueNRG-MS/includes/hci_const.h:
-../Middlewares/ST/BlueNRG-MS/hci/hci_tl_patterns/Basic/hci_tl.h:
-../BlueNRG_MS/Target/hci_tl_interface.h:
-../Core/Inc/stm32l1xx_nucleo_bus.h:
-../Core/Inc/stm32l1xx_nucleo_conf.h:
+ ../Drivers/STM32L1xx_HAL_Driver/Inc/stm32l1xx_hal_exti.h
 ../Drivers/STM32L1xx_HAL_Driver/Inc/stm32l1xx_hal.h:
 ../Core/Inc/stm32l1xx_hal_conf.h:
 ../Drivers/STM32L1xx_HAL_Driver/Inc/stm32l1xx_hal_rcc.h:
@@ -90,12 +54,3 @@ BlueNRG_MS/App/sensor.o: ../BlueNRG_MS/App/sensor.c \
 ../Drivers/STM32L1xx_HAL_Driver/Inc/stm32l1xx_hal_spi.h:
 ../Drivers/STM32L1xx_HAL_Driver/Inc/stm32l1xx_hal_uart.h:
 ../Drivers/STM32L1xx_HAL_Driver/Inc/stm32l1xx_hal_exti.h:
-../Drivers/BSP/STM32L1xx_Nucleo/stm32l1xx_nucleo_errno.h:
-../Middlewares/ST/BlueNRG-MS/includes/bluenrg_types.h:
-../Middlewares/ST/BlueNRG-MS/utils/ble_list.h:
-../BlueNRG_MS/Target/bluenrg_conf.h:
-../Middlewares/ST/BlueNRG-MS/includes/bluenrg_aci_const.h:
-../Middlewares/ST/BlueNRG-MS/includes/hci_const.h:
-../Middlewares/ST/BlueNRG-MS/includes/bluenrg_gatt_server.h:
-../Middlewares/ST/BlueNRG-MS/includes/compiler.h:
-../Middlewares/ST/BlueNRG-MS/includes/bluenrg_gatt_aci.h:

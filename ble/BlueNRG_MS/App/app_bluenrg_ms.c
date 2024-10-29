@@ -281,10 +281,10 @@ static void User_Process(void)
       srand(HAL_GetTick());
 
       /* Update emulated Environmental data */
-      //Set_Random_Environmental_Values(&data_t, &data_p); to wywalamy
-      int32_t pressure = 101325; //cisnienie hard-coded
-      int16_t temp_int = (int16_t)(temperature * 10); //nasza inkrementowana temperatura
-      BlueMS_Environmental_Update(pressure, temp_int); //wyslij do apki
+      Set_Random_Environmental_Values(&data_t, &data_p);
+      int32_t pressure = 101325;
+      int16_t temp_int = (int16_t)(temperature);
+      BlueMS_Environmental_Update(pressure, temperature);
 
       /* Update emulated Acceleration, Gyroscope and Sensor Fusion data */
       Set_Random_Motion_Values(counter);

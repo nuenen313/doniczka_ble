@@ -1,5 +1,5 @@
-Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
- ../Drivers/STM32L1xx_HAL_Driver/Inc/stm32l1xx_hal.h \
+Core/Src/TSL2572.o: ../Core/Src/TSL2572.c ../Core/Inc/TSL2572.h \
+ ../Core/Inc/main.h ../Drivers/STM32L1xx_HAL_Driver/Inc/stm32l1xx_hal.h \
  ../Core/Inc/stm32l1xx_hal_conf.h \
  ../Drivers/STM32L1xx_HAL_Driver/Inc/stm32l1xx_hal_rcc.h \
  ../Drivers/STM32L1xx_HAL_Driver/Inc/stm32l1xx_hal_def.h \
@@ -32,8 +32,8 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  ../Drivers/BSP/STM32L1xx_Nucleo/stm32l1xx_nucleo.h \
  ../Core/Inc/stm32l1xx_nucleo_conf.h \
  ../Drivers/BSP/STM32L1xx_Nucleo/stm32l1xx_nucleo_errno.h \
- ../BlueNRG_MS/App/app_bluenrg_ms.h ../Core/Inc/TSL2572.h \
  ../Core/Inc/main.h
+../Core/Inc/TSL2572.h:
 ../Core/Inc/main.h:
 ../Drivers/STM32L1xx_HAL_Driver/Inc/stm32l1xx_hal.h:
 ../Core/Inc/stm32l1xx_hal_conf.h:
@@ -69,6 +69,4 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
 ../Drivers/BSP/STM32L1xx_Nucleo/stm32l1xx_nucleo.h:
 ../Core/Inc/stm32l1xx_nucleo_conf.h:
 ../Drivers/BSP/STM32L1xx_Nucleo/stm32l1xx_nucleo_errno.h:
-../BlueNRG_MS/App/app_bluenrg_ms.h:
-../Core/Inc/TSL2572.h:
 ../Core/Inc/main.h:

@@ -38,6 +38,7 @@
 
 /* USER CODE BEGIN Includes */
 extern float temperature; //extern bo temperatura z innego pliku
+extern float luxVal;
 /* USER CODE END Includes */
 
 /* Private defines -----------------------------------------------------------*/
@@ -281,8 +282,8 @@ static void User_Process(void)
       srand(HAL_GetTick());
 
       /* Update emulated Environmental data */
-      Set_Random_Environmental_Values(&data_t, &data_p);
-      int32_t pressure = 101325;
+      //Set_Random_Environmental_Values(&data_t, &data_p);
+      int32_t pressure = (int16_t)luxVal*100;
       int16_t temp_int = (int16_t)(temperature);
       BlueMS_Environmental_Update(pressure, temperature);
 

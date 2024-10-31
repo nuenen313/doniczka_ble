@@ -1,0 +1,5 @@
+../Core/Src/TSL2572.c:3:19:TSL2572_Init	3
+../Core/Src/TSL2572.c:28:19:TSL2572_GetLux	3
+../Core/Src/TSL2572.c:51:19:TSL2572_ReadData	1
+../Core/Src/TSL2572.c:70:19:TSL2572_WriteByte	1
+../Core/Src/TSL2572.c:75:19:TSL2572_ReadByte	1

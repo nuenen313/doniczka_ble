@@ -67,8 +67,8 @@ all: main-build
 main-build: ble.elf secondary-outputs
 
 # Tool invocations
-ble.elf ble.map: $(OBJS) $(USER_OBJS) C:\Users\olabe\Desktop\projekt\ble\STM32L152RETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "ble.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"C:\Users\olabe\Desktop\projekt\ble\STM32L152RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="ble.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+ble.elf ble.map: $(OBJS) $(USER_OBJS) C:\Users\Marta\OneDrive\ -\ Politechnika\ Wroclawska\Documents\Arduino\doniczka_ble\ble\STM32L152RETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "ble.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"C:\Users\Marta\OneDrive - Politechnika Wroclawska\Documents\Arduino\doniczka_ble\ble\STM32L152RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="ble.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

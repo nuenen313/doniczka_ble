@@ -37,7 +37,8 @@
 #include "stm32l1xx_hal_tim.h"
 
 /* USER CODE BEGIN Includes */
-
+extern float temperature; //extern bo temperatura z innego pliku
+extern float luxVal;
 /* USER CODE END Includes */
 
 /* Private defines -----------------------------------------------------------*/
@@ -281,8 +282,10 @@ static void User_Process(void)
       srand(HAL_GetTick());
 
       /* Update emulated Environmental data */
-      Set_Random_Environmental_Values(&data_t, &data_p);
-      BlueMS_Environmental_Update((int32_t)(data_p *100), (int16_t)(data_t * 10));
+      //Set_Random_Environmental_Values(&data_t, &data_p);
+      int32_t pressure = (int16_t)luxVal*100;
+      int16_t temp_int = (int16_t)(temperature);
+      BlueMS_Environmental_Update(pressure, temperature);
 
       /* Update emulated Acceleration, Gyroscope and Sensor Fusion data */
       Set_Random_Motion_Values(counter);
